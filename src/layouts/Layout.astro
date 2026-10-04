@@ -1,0 +1,280 @@
+---
+import '../styles/global.css';
+import { portfolioData } from '../data/portfolioData';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { personal } = portfolioData;
+
+const { 
+  title = `${personal.name} — Editorial Writer, Researcher & Strategist`,
+  description = personal.summary
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={personal.name} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Chahat Singh Editorial Portfolio" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- High-Performance Typography Preconnects -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" 
+      rel="stylesheet" 
+    />
+  </head>
+  <body>
+    <!-- Top Reading Progress Line -->
+    <div id="reading-progress" aria-hidden="true"></div>
+
+    <!-- Minimalist Gallery Header Bar (Inspired by Kuulikki Icon Directory) -->
+    <header class="gallery-nav-bar">
+      <div class="nav-content">
+        <a href="#" class="brand-signature">
+          <span class="brand-monogram">CS</span>
+          <span class="brand-name">{personal.name}</span>
+          <span class="brand-tag">/ Editorial & Research Portfolio</span>
+        </a>
+
+        <!-- Minimalist Icon Directory & Navigation Links -->
+        <nav class="gallery-icon-directory" aria-label="Quick Directory">
+          <a href="#films" title="Directed Short Films" class="dir-icon-link">🎬</a>
+          <a href="#channels" title="Publication Channels" class="dir-icon-link">📸</a>
+          <a href="#properties" title="Editorial Portfolios" class="dir-icon-link">🏛️</a>
+          <a href="#samples" title="Writing Samples" class="dir-icon-link">📖</a>
+          <a href="#strategy" title="Content Strategy" class="dir-icon-link">⚡</a>
+          <a href="#philosophy" title="Editorial Philosophy" class="dir-icon-link">📜</a>
+          <a href="#experience" title="Newsroom Background" class="dir-icon-link">📰</a>
+          <span class="dir-sep">/</span>
+          <a href="https://boxd.it/4hAfn" target="_blank" rel="noopener noreferrer" class="text-dir-link" title="Letterboxd Profile">boxd</a>
+          <a href="https://vimeo.com/user214567561?fl=pp&fe=sh" target="_blank" rel="noopener noreferrer" class="text-dir-link" title="Vimeo Channel">vimeo</a>
+          <a href="https://www.instagram.com/chahatnotebook?stkn=aHl1bWRlNWw4aW1j" target="_blank" rel="noopener noreferrer" class="text-dir-link" title="Instagram @chahatnotebook">insta</a>
+          <a href="#contact" class="text-dir-link contact-pill">contact</a>
+          
+          <!-- Luxury Theme Toggle Button -->
+          <button id="theme-toggle-btn" class="theme-switch-btn" aria-label="Toggle gallery lighting" title="Toggle Gallery Theme">
+            <span class="theme-icon" id="theme-icon">◐</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="gallery-container">
+      <slot />
+    </div>
+
+    <!-- Theme Switch & Scroll Progress Scripts -->
+    <script>
+      function initGalleryCore() {
+        // Scroll Progress
+        const progressBar = document.getElementById('reading-progress');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              if (progressBar) {
+                const winScroll = window.scrollY;
+                const height = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+                progressBar.style.width = `${scrolled}%`;
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // Check stored preference
+        const savedTheme = localStorage.getItem('gallery-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '◐';
+
+        if (themeBtn) {
+          themeBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('gallery-theme', next);
+            if (themeIcon) themeIcon.textContent = next === 'dark' ? '☀️' : '◐';
+          });
+        }
+      }
+
+      initGalleryCore();
+    </script>
+  </body>
+</html>
+
+<style>
+  .gallery-nav-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--bg-page);
+    border-bottom: 1px solid var(--hairline);
+    transition: background-color var(--speed-normal) var(--ease), border-color var(--speed-normal) var(--ease);
+  }
+
+  .nav-content {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0.75rem clamp(1.5rem, 3.5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand-signature {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    color: var(--text-main);
+  }
+
+  .brand-monogram {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-terracotta);
+    letter-spacing: -0.05em;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-tag {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+  }
+
+  /* Minimalist Icon Directory (Reference Style) */
+  .gallery-icon-directory {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .dir-icon-link {
+    font-size: 0.95rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 2px;
+    transition: transform var(--speed-fast) var(--ease), opacity var(--speed-fast) var(--ease);
+    opacity: 0.85;
+  }
+
+  .dir-icon-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .dir-sep {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+
+  .text-dir-link {
+    font-family: var(--font-sans);
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.2rem 0.4rem;
+    transition: color var(--speed-fast) var(--ease);
+  }
+
+  .text-dir-link:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+  }
+
+  .contact-pill {
+    background: var(--text-main);
+    color: var(--bg-page) !important;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.775rem;
+    text-decoration: none !important;
+    transition: background var(--speed-fast) var(--ease);
+  }
+
+  .contact-pill:hover {
+    background: var(--accent-terracotta);
+  }
+
+  .theme-switch-btn {
+    background: transparent;
+    border: 1px solid var(--hairline);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    transition: all var(--speed-fast) var(--ease);
+    margin-left: 0.35rem;
+  }
+
+  .theme-switch-btn:hover {
+    border-color: var(--text-main);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 860px) {
+    .dir-icon-link {
+      display: none;
+    }
+
+    .brand-tag {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav-content {
+      padding: 0.85rem 1.25rem;
+    }
+  }
+</style>

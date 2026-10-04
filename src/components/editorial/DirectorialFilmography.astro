@@ -1,0 +1,396 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+import { getAssetUrl } from '../../utils/assets';
+
+const { directorialFilms, socials } = portfolioData;
+const letterboxd = socials.find(s => s.label === 'Letterboxd');
+const vimeo = socials.find(s => s.label === 'Vimeo');
+---
+
+<section class="gallery-section" id="films">
+  <div class="section-number-tag">
+    <span>EXHIBIT 02 // CINEMATIC FILMOGRAPHY & DIRECTED SHORTS</span>
+  </div>
+  <div class="films-header-row">
+    <div>
+      <h2 class="section-title">
+        Written & Directed <span class="italic-serif">Short Films</span>
+      </h2>
+      <p class="section-subtext">
+        Narrative filmmaking spanning poetic adolescent realism and psychological surrealism. Written and directed with a focus on interior psychology, atmospheric pacing, and visual storytelling.
+      </p>
+    </div>
+
+    <!-- Quick Cinema Links (Letterboxd + Vimeo) -->
+    <div class="cinema-platform-pills">
+      {vimeo && (
+        <a href={vimeo.url} target="_blank" rel="noopener noreferrer" class="cinema-platform-btn vimeo-btn">
+          <span>🎬 Watch on Vimeo</span>
+          <span class="arrow">↗</span>
+        </a>
+      )}
+      {letterboxd && (
+        <a href={letterboxd.url} target="_blank" rel="noopener noreferrer" class="cinema-platform-btn letterboxd-btn">
+          <span>🍿 Letterboxd Profile</span>
+          <span class="arrow">↗</span>
+        </a>
+      )}
+    </div>
+  </div>
+
+  <!-- Films Bento Grid -->
+  <div class="films-grid">
+    {directorialFilms.map((film, index) => (
+      <article class="gallery-card film-card">
+        <div class="film-poster-window">
+          {film.imageCover && (
+            <img 
+              src={getAssetUrl(film.imageCover)} 
+              alt={film.title} 
+              class="film-poster-img"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <div class="film-poster-gradient"></div>
+          
+          <div class="film-runtime-pill">
+            <span class="film-reel-icon">🎞️</span>
+            <span>{film.duration}</span>
+          </div>
+
+          <div class="film-badge-overlay">
+            <span class="film-year-tag">{film.year}</span>
+            <span class="gallery-tag gold">{film.badge}</span>
+          </div>
+        </div>
+
+        <div class="film-card-content">
+          <div class="film-meta-header">
+            <div>
+              <span class="film-genre-label">{film.genre}</span>
+              <h3 class="film-title">{film.title} <span class="film-year-sub">({film.year})</span></h3>
+            </div>
+            <span class="film-index">FILM 0{index + 1}</span>
+          </div>
+
+          <div class="film-credit-line">
+            <span class="credit-role-tag">ROLE:</span>
+            <span class="credit-name">{film.role}</span>
+          </div>
+
+          <p class="film-synopsis">{film.synopsis}</p>
+
+          <div class="film-themes-section">
+            <span class="themes-label">EXPLORED THEMES:</span>
+            <div class="film-themes-row">
+              {film.themes.map(t => (
+                <span class="film-theme-chip">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="film-action-bar">
+            {film.vimeoUrl && (
+              <a 
+                href={film.vimeoUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-gallery btn-gallery-primary film-action-btn"
+              >
+                <span>Watch on Vimeo</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            )}
+            {film.letterboxdUrl && (
+              <a 
+                href={film.letterboxdUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-gallery film-action-btn film-letterboxd-link"
+              >
+                <span>Letterboxd Diary</span>
+                <span class="arrow-glyph">↗</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .films-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cinema-platform-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cinema-platform-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all var(--speed-fast) var(--ease);
+    text-decoration: none;
+  }
+
+  .vimeo-btn {
+    background: rgba(26, 155, 233, 0.1);
+    color: #1ab7ea;
+    border: 1px solid rgba(26, 183, 234, 0.3);
+  }
+
+  .vimeo-btn:hover {
+    background: #1ab7ea;
+    color: #ffffff;
+    border-color: #1ab7ea;
+  }
+
+  .letterboxd-btn {
+    background: rgba(255, 128, 0, 0.1);
+    color: #ff8000;
+    border: 1px solid rgba(255, 128, 0, 0.3);
+  }
+
+  .letterboxd-btn:hover {
+    background: #ff8000;
+    color: #ffffff;
+    border-color: #ff8000;
+  }
+
+  /* Films Grid */
+  .films-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .film-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    background: var(--bg-surface);
+  }
+
+  .film-poster-window {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: #000000;
+  }
+
+  .film-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: brightness(0.7) contrast(1.1);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s var(--ease);
+  }
+
+  .film-card:hover .film-poster-img {
+    transform: scale(1.06);
+    filter: brightness(0.85) contrast(1.15);
+  }
+
+  .film-poster-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(10,12,18,0.9) 100%);
+    pointer-events: none;
+  }
+
+  .film-runtime-pill {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .film-reel-icon {
+    font-size: 0.75rem;
+  }
+
+  .film-badge-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .film-year-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .film-card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.35rem;
+    flex: 1;
+  }
+
+  .film-meta-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .film-genre-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  .film-title {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-main);
+  }
+
+  .film-year-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .film-index {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+
+  .film-credit-line {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+  }
+
+  .credit-role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+
+  .credit-name {
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .film-synopsis {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .film-themes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--hairline-subtle);
+  }
+
+  .themes-label {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .film-themes-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .film-theme-chip {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+  }
+
+  .film-action-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--hairline-subtle);
+  }
+
+  .film-action-btn {
+    flex: 1;
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .film-letterboxd-link {
+    background: var(--bg-surface-soft);
+  }
+
+  .arrow-glyph {
+    transition: transform var(--speed-fast) var(--ease);
+  }
+
+  .film-action-btn:hover .arrow-glyph {
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 900px) {
+    .films-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

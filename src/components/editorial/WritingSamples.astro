@@ -1,0 +1,663 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+import { getAssetUrl } from '../../utils/assets';
+
+const { writingSamples } = portfolioData;
+
+const sampleCategories = ['All', 'Brand Story', 'Historical Narrative', 'News Explainer', 'Finance Context'];
+---
+
+<section class="gallery-section" id="samples">
+  <div class="section-number-tag">
+    <span>EXHIBIT 03 // ESSAYS & CASE STUDIES</span>
+  </div>
+  <h2 class="section-title">
+    Storytelling in <span class="italic-serif">Practice</span>
+  </h2>
+  <p class="section-subtext">
+    Selected long-form essays demonstrating hook architecture, narrative pacing, and strategic analysis across brand building, archival history, news, and sovereign economics.
+  </p>
+
+  <!-- Filter Buttons -->
+  <div class="gallery-filter-bar">
+    <span class="filter-lead">FILTER ESSAYS:</span>
+    <div class="filter-pill-group">
+      {sampleCategories.map((cat, idx) => (
+        <button 
+          class={`gallery-filter-btn ${idx === 0 ? 'active' : ''}`}
+          data-category={cat}
+        >
+          <span>{cat}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="essays-gallery-grid">
+    {writingSamples.map((sample, idx) => (
+      <article class="gallery-card essay-exhibit-card" data-category={sample.category} id={`sample-${sample.id}`}>
+        
+        {sample.imageCover && (
+          <div class="essay-artwork-box">
+            <img 
+              src={getAssetUrl(sample.imageCover)} 
+              alt={sample.title} 
+              class="essay-artwork-img"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="artwork-overlay">
+              <span class="artwork-category-tag">{sample.category}</span>
+              {sample.date && <span class="artwork-date-tag">{sample.date}</span>}
+            </div>
+          </div>
+        )}
+
+        <div class="essay-meta-top">
+          <span class="gallery-tag gold">{sample.category}</span>
+          <span class="essay-read-time">⏱️ {sample.readTime}</span>
+        </div>
+
+        <div class="essay-heading-group">
+          <h3 class="essay-title">{sample.title}</h3>
+          {sample.subtitle && <p class="essay-subtitle">{sample.subtitle}</p>}
+        </div>
+
+        <!-- The Opening Hook -->
+        <div class="essay-hook-box">
+          <span class="hook-tag-label">THE OPENING HOOK</span>
+          <p class="hook-body-text">“{sample.hook}”</p>
+        </div>
+
+        <!-- Excerpt -->
+        <div class="essay-excerpt-box">
+          <p class="excerpt-paragraph">{sample.excerpt}</p>
+        </div>
+
+        <!-- Strategic Takeaway -->
+        <div class="essay-takeaway-row">
+          <span class="takeaway-label">STRATEGIC TAKEAWAY:</span>
+          <p class="takeaway-content">{sample.keyTakeaway}</p>
+        </div>
+
+        <!-- Read Full Essay Action Button -->
+        <div class="essay-action-container">
+          <button 
+            class="btn-gallery btn-gallery-primary open-reader-btn" 
+            data-sample-id={sample.id}
+          >
+            <span>Read Complete Essay</span>
+            <span class="arrow-glyph">→</span>
+          </button>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Interactive Full Essay Reading Modal Salon -->
+  <div id="story-modal-backdrop" class="gallery-modal-backdrop" aria-hidden="true">
+    <div class="gallery-modal" role="dialog" aria-modal="true">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close reading salon">✕</button>
+
+      <div class="modal-cover-wrapper" id="modal-cover-wrapper" style="display: none;">
+        <img id="modal-cover-img" src="" alt="Essay Cover" class="modal-cover-image" />
+      </div>
+
+      <div class="salon-header">
+        <div class="salon-meta-row">
+          <span id="modal-cat" class="gallery-tag gold">Category</span>
+          <span id="modal-read-time" class="essay-read-time">Read Time</span>
+        </div>
+        <h2 id="modal-title" class="salon-title">Essay Title</h2>
+        <p id="modal-subtitle" class="salon-subtitle">Essay Subtitle</p>
+      </div>
+
+      <div class="salon-body-content">
+        <div class="salon-intro-box">
+          <p id="modal-intro"></p>
+        </div>
+
+        <div id="modal-key-points" class="salon-points-stack"></div>
+
+        <div id="modal-pullquote" class="gallery-pullquote"></div>
+
+        <div class="salon-conclusion-box">
+          <h4 class="conclusion-title">STRATEGIC CONCLUSION & SYNTHESIS</h4>
+          <p id="modal-conclusion"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Embedded JSON Data for Salon Reader -->
+<script define:vars={{ writingSamples }}>
+  window.__WRITING_SAMPLES__ = writingSamples;
+</script>
+
+<style>
+  .gallery-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-lead {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .filter-pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .gallery-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    padding: 0.45rem 1rem;
+    border-radius: 4px;
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--speed-fast) var(--ease);
+  }
+
+  .gallery-filter-btn:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+  }
+
+  .gallery-filter-btn.active {
+    background: var(--text-main);
+    color: var(--bg-page);
+    border-color: var(--text-main);
+  }
+
+  .essays-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+  }
+
+  .essay-exhibit-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    overflow: hidden;
+  }
+
+  .essay-exhibit-card.hidden {
+    display: none !important;
+  }
+
+  /* Artwork Box */
+  .essay-artwork-box {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 0.5rem;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+  }
+
+  .essay-artwork-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.95);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .essay-exhibit-card:hover .essay-artwork-img {
+    transform: scale(1.04);
+  }
+
+  .artwork-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
+    padding: 1rem 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .artwork-category-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #f59e0b;
+    font-weight: 600;
+  }
+
+  .artwork-date-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: #e5e7eb;
+  }
+
+  .essay-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .essay-read-time {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+  }
+
+  .essay-heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .essay-title {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-main);
+  }
+
+  .essay-subtitle {
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .essay-hook-box {
+    background: var(--bg-surface-soft);
+    border-left: 2px solid var(--accent-terracotta);
+    padding: 1.15rem 1.35rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .hook-tag-label {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .hook-body-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .excerpt-paragraph {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .essay-takeaway-row {
+    padding-top: 1rem;
+    border-top: 1px solid var(--hairline-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .takeaway-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+
+  .takeaway-content {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .open-reader-btn {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+
+  /* Modal Salon */
+  .gallery-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 14, 13, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .gallery-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .gallery-modal {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 780px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    color: var(--text-main);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--speed-fast) var(--ease);
+    z-index: 10;
+  }
+
+  .modal-close-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-page);
+  }
+
+  .modal-cover-wrapper {
+    margin: -2.5rem -2.5rem 2rem -2.5rem;
+    max-height: 280px;
+    overflow: hidden;
+  }
+
+  .modal-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.95);
+  }
+
+  .salon-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .salon-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .salon-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .salon-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .salon-intro-box p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .salon-points-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .point-item {
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+
+  .point-heading {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .point-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .gallery-pullquote {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--accent-terracotta);
+    border-left: 2px solid var(--accent-terracotta);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    line-height: 1.5;
+    background: var(--bg-surface-soft);
+  }
+
+  .salon-conclusion-box {
+    background: var(--bg-surface-soft);
+    border-left: 2px solid var(--accent-terracotta);
+    padding: 1.5rem;
+    border-radius: 0 4px 4px 0;
+    margin-top: 1.5rem;
+  }
+
+  .conclusion-title {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .salon-conclusion-box p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 900px) {
+    .essays-gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .gallery-modal {
+      padding: 1.75rem 1.25rem;
+      max-height: 95vh;
+    }
+
+    .modal-cover-wrapper {
+      margin: -1.75rem -1.25rem 1.5rem -1.25rem;
+      max-height: 200px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-filter-bar {
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .essay-exhibit-card {
+      padding: 1.25rem;
+    }
+
+    .open-reader-btn {
+      font-size: 0.88rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  function initWritingSalon() {
+    // Filter
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.gallery-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.essay-exhibit-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const selected = btn.getAttribute('data-category');
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (selected === 'All' || cat === selected) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Modal
+    const modalBackdrop = document.getElementById('story-modal-backdrop');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const openBtns = document.querySelectorAll<HTMLButtonElement>('.open-reader-btn');
+
+    const modalCat = document.getElementById('modal-cat');
+    const modalReadTime = document.getElementById('modal-read-time');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalIntro = document.getElementById('modal-intro');
+    const modalKeyPoints = document.getElementById('modal-key-points');
+    const modalPullquote = document.getElementById('modal-pullquote');
+    const modalConclusion = document.getElementById('modal-conclusion');
+    const modalCoverWrapper = document.getElementById('modal-cover-wrapper');
+    const modalCoverImg = document.getElementById('modal-cover-img') as HTMLImageElement;
+
+    const samplesData = (window as any).__WRITING_SAMPLES__ || [];
+
+    function openModal(sampleId: string) {
+      const sample = samplesData.find((s: any) => s.id === sampleId);
+      if (!sample || !modalBackdrop) return;
+
+      if (modalCat) modalCat.textContent = sample.category;
+      if (modalReadTime) modalReadTime.textContent = sample.readTime;
+      if (modalTitle) modalTitle.textContent = sample.title;
+      if (modalSubtitle) modalSubtitle.textContent = sample.subtitle || '';
+      
+      if (sample.imageCover && modalCoverWrapper && modalCoverImg) {
+        const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+        const coverSrc = sample.imageCover.startsWith('http') ? sample.imageCover : `${base}${sample.imageCover.startsWith('/') ? '' : '/'}${sample.imageCover}`;
+        modalCoverImg.src = coverSrc;
+        modalCoverWrapper.style.display = 'block';
+      } else if (modalCoverWrapper) {
+        modalCoverWrapper.style.display = 'none';
+      }
+
+      if (sample.fullBody) {
+        if (modalIntro) modalIntro.textContent = sample.fullBody.introduction;
+        
+        if (modalKeyPoints) {
+          modalKeyPoints.innerHTML = sample.fullBody.keyPoints.map((kp: any) => `
+            <div class="point-item">
+              <h4 class="point-heading">${kp.heading}</h4>
+              <p class="point-text">${kp.text}</p>
+            </div>
+          `).join('');
+        }
+
+        if (modalPullquote) {
+          if (sample.fullBody.pullQuote) {
+            modalPullquote.textContent = sample.fullBody.pullQuote;
+            modalPullquote.style.display = 'block';
+          } else {
+            modalPullquote.style.display = 'none';
+          }
+        }
+
+        if (modalConclusion) modalConclusion.textContent = sample.fullBody.conclusion;
+      }
+
+      modalBackdrop.classList.add('active');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modalBackdrop) return;
+      modalBackdrop.classList.remove('active');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sampleId = btn.getAttribute('data-sample-id');
+        if (sampleId) openModal(sampleId);
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    if (modalBackdrop) {
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  initWritingSalon();
+</script>

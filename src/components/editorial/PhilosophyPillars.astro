@@ -1,0 +1,407 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+
+const { pillars, academicPhilosophy, personal } = portfolioData;
+---
+
+<section class="gallery-section" id="philosophy">
+  <div class="section-number-tag">
+    <span>EXHIBIT 05 // PHILOSOPHICAL DOCTRINE & STANDARDS</span>
+  </div>
+  <h2 class="section-title">
+    Narrative Architecture & <span class="italic-serif">Causal Continuity</span>
+  </h2>
+  <p class="section-subtext">
+    “{personal.mantra}” — Chahat
+  </p>
+
+  <!-- 3 Pillars Gallery Grid -->
+  <div class="pillars-grid">
+    {pillars.map((pillar, i) => (
+      <div class="gallery-card pillar-card">
+        <div class="pillar-top-meta">
+          <span class="pillar-num">STANDARD 0{i + 1}</span>
+          <span class="pillar-status-chip">Non-Negotiable</span>
+        </div>
+
+        <h3 class="pillar-title">{pillar.title}</h3>
+        <span class="pillar-tagline">{pillar.tagline}</span>
+        <p class="pillar-desc">{pillar.description}</p>
+
+        {pillar.detailPillars && (
+          <div class="pillar-checklist-wrapper">
+            <span class="checklist-heading">DISCIPLINE BENCHMARKS</span>
+            <ul class="pillar-checklist">
+              {pillar.detailPillars.map(item => (
+                <li>
+                  <span class="bullet-gold">✦</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Causal Continuity Doctrine Box -->
+  <div class="gallery-card doctrine-monograph">
+    <div class="doctrine-top-row">
+      <span class="doctrine-eyebrow">THE CORE WRITING PRINCIPLE</span>
+      <span class="gallery-tag gold">Audience-First Architecture</span>
+    </div>
+    <h3 class="doctrine-title">The Law of Causal Continuity</h3>
+    <p class="doctrine-lead">
+      My writing is designed primarily for the audience, not for the writer. I prefer simple, natural language while keeping the underlying research strong. I avoid unnecessary complexity, artificial vocabulary, repetitive sentences, and information that does not contribute to the story.
+    </p>
+    <div class="doctrine-quote-box">
+      <p class="doctrine-quote-text">
+        “One sentence should give the audience an undeniable reason to listen to the next sentence. Facts should never appear as disconnected information—they must explain what happened, create a consequence, or move the story forward.”
+      </p>
+      <span class="quote-sign">— Chahat</span>
+    </div>
+  </div>
+
+  <!-- Academic & Analytical Philosophy Dossier -->
+  <div class="academic-monograph">
+    <div class="academic-header">
+      <span class="academic-eyebrow">SCHOLARLY INQUIRY & CRITICAL RIGOR</span>
+      <h3 class="academic-heading">Academic & Philosophical Writing</h3>
+      <p class="academic-sub">
+        Writer and researcher with a personal interest in philosophy, Indian philosophy, analytical logic, and mathematics. I enjoy reading books and writing philosophical notes.
+      </p>
+    </div>
+
+    <div class="academic-grid">
+      <div class="academic-card principle-box">
+        <span class="card-meta">ANALYTICAL METHOD</span>
+        <h4 class="academic-card-title">Strongest-Form Argumentation</h4>
+        <p class="academic-card-desc">{academicPhilosophy.principle}</p>
+        <div class="academic-quote-pill">
+          <p class="academic-quote-text">“I write to understand deeply, question honestly, and make complex ideas clear.”</p>
+          <span class="academic-author">— Chahat</span>
+        </div>
+      </div>
+
+      <div class="academic-card topics-box">
+        <span class="card-meta">AREAS OF INQUIRY & NOTES</span>
+        <h4 class="academic-card-title">Core Philosophical Domains</h4>
+        <ul class="phil-topics-list">
+          {academicPhilosophy.topics.map(t => (
+            <li>
+              <span class="topic-dot">✦</span>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .pillar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2.25rem;
+  }
+
+  .pillar-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .pillar-status-chip {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .pillar-title {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-main);
+  }
+
+  .pillar-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .pillar-desc {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .pillar-checklist-wrapper {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .checklist-heading {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .pillar-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pillar-checklist li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .bullet-gold {
+    color: var(--accent-terracotta);
+    font-size: 0.7rem;
+  }
+
+  /* Causal Continuity Doctrine */
+  .doctrine-monograph {
+    padding: 2.75rem;
+    margin-bottom: 3.5rem;
+    background: var(--bg-surface);
+  }
+
+  .doctrine-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .doctrine-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  .doctrine-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+    color: var(--text-main);
+  }
+
+  .doctrine-lead {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .doctrine-quote-box {
+    background: var(--bg-surface-soft);
+    border-left: 3px solid var(--accent-terracotta);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .doctrine-quote-text {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-sign {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+    font-weight: 600;
+  }
+
+  /* Academic Monograph */
+  .academic-monograph {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 2.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .academic-monograph::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-terracotta);
+  }
+
+  .academic-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .academic-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .academic-heading {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--text-main);
+  }
+
+  .academic-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .academic-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.75rem;
+  }
+
+  .academic-card {
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 1.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .academic-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .academic-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .academic-quote-pill {
+    background: rgba(201, 162, 77, 0.08);
+    border-left: 2px solid var(--accent-gold);
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+    margin-top: 0.5rem;
+  }
+
+  .academic-quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .academic-author {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .phil-topics-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .phil-topics-list li {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.45;
+  }
+
+  .topic-dot {
+    color: var(--accent-terracotta);
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 960px) {
+    .pillars-grid, .academic-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .doctrine-monograph, .academic-monograph {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

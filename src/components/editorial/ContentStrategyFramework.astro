@@ -1,0 +1,493 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+
+const { strategyQuestions, writingStructureSteps, viralFactors, researchTaxonomy } = portfolioData;
+---
+
+<section class="gallery-section" id="strategy">
+  <div class="gallery-section-header">
+    <span class="section-number-tag">04 // CONTENT STRATEGY & VIRAL ARCHITECTURE</span>
+    <h2 class="section-title">
+      How High-Impact Content Begins <span class="italic-serif">Before the First Draft</span>
+    </h2>
+    <p class="section-subtext">
+      Content strategy is the disciplined practice of understanding why an audience would stop, watch, remember, and share. Every story is filtered through strategic psychology and factual rigor.
+    </p>
+  </div>
+
+  <!-- The Short-Form Narrative Flow (Hook -> Payoff) -->
+  <div class="gallery-card formula-monograph">
+    <div class="formula-header-row">
+      <div>
+        <span class="formula-eyebrow">SHORT-FORM VIRAL STRUCTURE</span>
+        <h3 class="formula-title">The 6-Step Narrative Architecture</h3>
+      </div>
+      <span class="gallery-tag gold">Fluid & Topic-Driven</span>
+    </div>
+
+    <div class="formula-steps-grid">
+      {writingStructureSteps.map(item => (
+        <div class="formula-step-card">
+          <span class="f-step-num">{item.step}</span>
+          <span class="f-step-purpose">{item.purpose}</span>
+          <p class="f-step-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Viral Retention Factors Bento Grid -->
+  <div class="retention-wrapper">
+    <div class="retention-header">
+      <span class="retention-eyebrow">AUDIENCE PSYCHOLOGY & RETENTION</span>
+      <h3 class="retention-heading">Nine Drivers of Authentic Engagement</h3>
+      <p class="retention-sub">
+        I do not rely solely on clickbait. I design the story itself to create organic retention by addressing viewers' questions, misconceptions, and human stakes:
+      </p>
+    </div>
+
+    <div class="retention-grid">
+      {viralFactors.map((factor, idx) => (
+        <div class="gallery-card retention-card">
+          <div class="ret-top">
+            <span class="ret-num">DRIVER 0{idx + 1}</span>
+            <span class="ret-icon">✦</span>
+          </div>
+          <p class="ret-text">{factor}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Research Taxonomy: 5 Levels of Confidence -->
+  <div class="taxonomy-monograph">
+    <div class="taxonomy-header">
+      <span class="taxonomy-eyebrow">FACTUAL DISCIPLINE</span>
+      <h3 class="taxonomy-heading">The 5 Levels of Research Confidence</h3>
+      <p class="taxonomy-sub">
+        My research separates information into distinct confidence tiers—distinguishing primary evidence from literary legends:
+      </p>
+    </div>
+
+    <div class="taxonomy-stack">
+      {researchTaxonomy.map(tax => (
+        <div class="taxonomy-row-card">
+          <div class="tax-left">
+            <span class="tax-level-badge">{tax.level}</span>
+            <h4 class="tax-category">{tax.category}</h4>
+          </div>
+          <div class="tax-center">
+            <p class="tax-desc">{tax.description}</p>
+          </div>
+          <div class="tax-right">
+            <div class="tax-chips">
+              {tax.criteria.map(c => (
+                <span class="tax-chip">{c}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- The 6 Strategic Questions Gallery Bento -->
+  <div class="questions-section">
+    <div class="questions-header">
+      <span class="questions-eyebrow">EDITORIAL PRE-FLIGHT FILTER</span>
+      <h3 class="questions-heading">Six Questions Before Every Draft</h3>
+    </div>
+
+    <div class="questions-grid">
+      {strategyQuestions.map((q, i) => (
+        <div class="gallery-card question-card">
+          <div class="q-header">
+            <div class="q-badge-row">
+              <span class="q-num">Q0{i + 1}</span>
+              {q.tag && <span class="q-tag">{q.tag}</span>}
+            </div>
+            <span class="q-principle">{q.principle}</span>
+          </div>
+          <h4 class="q-title">{q.question}</h4>
+          <p class="q-explanation">{q.explanation}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 6-Step Structure Monograph */
+  .formula-monograph {
+    padding: 2.5rem;
+    margin-bottom: 3.5rem;
+    background: var(--bg-surface);
+  }
+
+  .formula-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .formula-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .formula-title {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .formula-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .formula-step-card {
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .f-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-terracotta);
+    font-weight: 700;
+  }
+
+  .f-step-purpose {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .f-step-desc {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Retention Grid */
+  .retention-wrapper {
+    margin-bottom: 4rem;
+  }
+
+  .retention-header {
+    margin-bottom: 2rem;
+  }
+
+  .retention-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .retention-heading {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.35rem;
+  }
+
+  .retention-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 720px;
+    line-height: 1.7;
+  }
+
+  .retention-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .retention-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: space-between;
+  }
+
+  .ret-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ret-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+
+  .ret-icon {
+    color: var(--accent-terracotta);
+    font-size: 0.75rem;
+  }
+
+  .ret-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+
+  /* Taxonomy Monograph */
+  .taxonomy-monograph {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 2.75rem;
+    margin-bottom: 4rem;
+  }
+
+  .taxonomy-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .taxonomy-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .taxonomy-heading {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.35rem;
+  }
+
+  .taxonomy-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .taxonomy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .taxonomy-row-card {
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 1.3fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .tax-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .tax-level-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent-terracotta);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .tax-category {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .tax-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .tax-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tax-chip {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* Questions Grid */
+  .questions-section {
+    margin-top: 2rem;
+  }
+
+  .questions-header {
+    margin-bottom: 2rem;
+  }
+
+  .questions-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .questions-heading {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .questions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .question-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .q-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .q-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .q-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-terracotta);
+    font-weight: 700;
+  }
+
+  .q-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .q-principle {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .q-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-main);
+  }
+
+  .q-explanation {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Responsive Mobile Breakpoints */
+  @media (max-width: 1024px) {
+    .formula-steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .retention-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .taxonomy-row-card {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .questions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 680px) {
+    .formula-monograph, .taxonomy-monograph {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .formula-steps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .retention-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .questions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,318 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+
+const { editorialProperties } = portfolioData;
+
+const categories = [
+  { name: 'All', count: editorialProperties.length },
+  { name: 'History & Culture', count: editorialProperties.filter(p => p.category === 'History & Culture').length },
+  { name: 'Brand & Business', count: editorialProperties.filter(p => p.category === 'Brand & Business').length },
+  { name: 'News & Current Affairs', count: editorialProperties.filter(p => p.category === 'News & Current Affairs').length },
+  { name: 'Finance & Markets', count: editorialProperties.filter(p => p.category === 'Finance & Markets').length }
+];
+---
+
+<section class="gallery-section" id="properties">
+  <div class="section-number-tag">
+    <span>EXHIBIT 02 // EDITORIAL NICHES & MONOGRAPHS</span>
+  </div>
+  <h2 class="section-title">
+    Ten Specialized <span class="italic-serif">Research Portfolios</span>
+  </h2>
+  <p class="section-subtext">
+    A curated index of ongoing research properties spanning regional Indian history, brand building moats, fast-turnaround national news, and financial economics.
+  </p>
+
+  <!-- Filter Navigation Tabs -->
+  <div class="gallery-filter-bar">
+    <span class="filter-lead">FILTER CHANNELS:</span>
+    <div class="filter-pill-group">
+      {categories.map((cat, idx) => (
+        <button 
+          class={`gallery-filter-btn ${idx === 0 ? 'active' : ''}`}
+          data-cat={cat.name}
+        >
+          <span>{cat.name}</span>
+          <span class="filter-badge">{cat.count}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Properties Grid -->
+  <div class="properties-gallery-grid" id="properties-grid">
+    {editorialProperties.map((property, index) => (
+      <article class="gallery-card property-exhibit-card" data-category={property.category}>
+        <div class="prop-exhibit-top">
+          <div class="prop-badge-group">
+            <span class="gallery-tag gold">{property.badge || 'Editorial'}</span>
+            <span class="prop-cat-text">{property.category}</span>
+          </div>
+          <span class="prop-index-num">VOL. 0{index + 1}</span>
+        </div>
+
+        <div class="prop-title-group">
+          <h3 class="prop-title">{property.title}</h3>
+          <p class="prop-tagline">“{property.tagline}”</p>
+        </div>
+
+        <p class="prop-description">{property.description}</p>
+
+        {property.highlights && property.highlights.length > 0 && (
+          <div class="prop-core-box">
+            <span class="prop-sublabel">CORE TOPICS:</span>
+            <div class="prop-chips-row">
+              {property.highlights.map(h => (
+                <span class="prop-chip">{h}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="prop-focus-section">
+          <span class="prop-sublabel">KEY PILLARS:</span>
+          <div class="prop-tags-row">
+            {property.focusAreas.map(tag => (
+              <span class="gallery-tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prop-method-box">
+          <span class="method-label">EDITORIAL METHODOLOGY</span>
+          <p class="method-text">{property.approach}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .gallery-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-lead {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .filter-pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .gallery-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    padding: 0.45rem 1rem;
+    border-radius: 2px;
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--speed-fast) var(--ease);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-badge {
+    font-size: 0.675rem;
+    background: var(--bg-surface-soft);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+  }
+
+  .gallery-filter-btn:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+  }
+
+  .gallery-filter-btn.active {
+    background: var(--text-main);
+    color: var(--bg-page);
+    border-color: var(--text-main);
+  }
+
+  .gallery-filter-btn.active .filter-badge {
+    background: var(--bg-surface-soft);
+    color: var(--text-main);
+  }
+
+  .properties-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .property-exhibit-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .property-exhibit-card.hidden {
+    display: none !important;
+  }
+
+  .prop-exhibit-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .prop-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .prop-cat-text {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-faint);
+  }
+
+  .prop-index-num {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--accent-terracotta);
+    font-weight: 600;
+  }
+
+  .prop-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .prop-title {
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--text-main);
+  }
+
+  .prop-tagline {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--accent-terracotta);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .prop-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .prop-sublabel {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .prop-core-box {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--hairline-subtle);
+  }
+
+  .prop-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .prop-chip {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+  }
+
+  .prop-focus-section {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--hairline-subtle);
+  }
+
+  .prop-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .prop-method-box {
+    background: var(--bg-surface-soft);
+    border-left: 2px solid var(--text-main);
+    padding: 1rem 1.25rem;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .method-label {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .method-text {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .properties-gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function initPropFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.gallery-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.property-exhibit-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const selected = btn.getAttribute('data-cat');
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (selected === 'All' || cat === selected) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  initPropFilters();
+</script>

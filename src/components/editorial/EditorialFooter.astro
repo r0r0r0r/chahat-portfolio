@@ -1,0 +1,281 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+
+const { personal } = portfolioData;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="editorial-footer">
+  <div class="footer-top-grid">
+    <div class="footer-brand-col">
+      <div class="footer-brand">
+        <span class="footer-monogram">CS</span>
+        <span class="footer-name">{personal.name}</span>
+      </div>
+      <p class="footer-vision">
+        “{personal.mantra}”
+        <span class="footer-author">— Chahat</span>
+      </p>
+      <div class="footer-contact-pills">
+        <a href={`mailto:${personal.email}`} class="footer-pill-link">
+          <span>✉️ {personal.email}</span>
+        </a>
+        <a href={personal.whatsapp} target="_blank" rel="noopener noreferrer" class="footer-pill-link">
+          <span>💬 {personal.phone}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-nav-col">
+      <span class="footer-col-title">CURATED SECTIONS</span>
+      <nav class="footer-links">
+        <a href="#properties">🏛️ Editorial Monograph</a>
+        <a href="#samples">📖 Long-Form Salon</a>
+        <a href="#strategy">⚡ Strategy Architecture</a>
+        <a href="#philosophy">📜 Narrative Standards</a>
+        <a href="#experience">📰 Newsroom Dossier</a>
+        <a href="#contact">✦ Inquiries & Commissions</a>
+      </nav>
+    </div>
+
+    <div class="footer-status-col">
+      <span class="footer-col-title">COLOPHON & DOSSIER</span>
+      <div class="edition-card">
+        <span class="edition-tag">PORTFOLIO EDITION // VOL. 2026</span>
+        <p class="edition-desc">Curated research, historical excavation, high-retention video scripts & content strategy.</p>
+        <div class="edition-meta-stack">
+          <span class="edition-loc">📍 {personal.location}</span>
+          <span class="edition-loc">⚡ Available for Worldwide Remote & On-Site Projects</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom-row">
+    <div class="footer-copy">
+      © {currentYear} {personal.name}. All editorial case studies, archival essays, and video narratives crafted with rigorous research integrity.
+    </div>
+
+    <button id="editorial-back-to-top" class="top-btn" aria-label="Back to top">
+      <span>↑ Back to Exhibition Start</span>
+    </button>
+  </div>
+</footer>
+
+<style>
+  .editorial-footer {
+    margin-top: 7rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border-hairline);
+    position: relative;
+  }
+
+  .editorial-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 80px;
+    height: 1px;
+    background: var(--accent-gold);
+  }
+
+  .footer-top-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-monogram {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: var(--text-primary);
+    color: var(--bg-deep);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .footer-vision {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-author {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-style: normal;
+    color: var(--accent-gold);
+    font-weight: 600;
+    margin-top: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-contact-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-pill-link {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    transition: color var(--duration-fast) var(--ease-out-quint);
+    word-break: break-all;
+  }
+
+  .footer-pill-link:hover {
+    color: var(--accent-gold);
+  }
+
+  .footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-links a {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    transition: color var(--duration-fast) var(--ease-out-quint), transform var(--duration-fast) var(--ease-out-quint);
+    display: inline-block;
+  }
+
+  .footer-links a:hover {
+    color: var(--text-primary);
+    transform: translateX(3px);
+  }
+
+  .edition-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .edition-tag {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .edition-desc {
+    font-family: var(--font-sans);
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .edition-meta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-hairline);
+  }
+
+  .edition-loc {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .footer-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-hairline);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .top-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out-quint);
+  }
+
+  .top-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .editorial-footer {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+    }
+
+    .footer-top-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
+
+<script>
+  const topBtn = document.getElementById('editorial-back-to-top');
+  if (topBtn) {
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>

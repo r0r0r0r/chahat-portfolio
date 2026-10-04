@@ -1,0 +1,1148 @@
+---
+import { portfolioData } from '../../data/portfolioData';
+import { getAssetUrl } from '../../utils/assets';
+
+const { personal, stats } = portfolioData;
+---
+
+<header class="avant-masthead" id="about">
+  <!-- Giant Avant-Garde Statement Headline Section -->
+  <div class="hero-statement-section">
+    <!-- Top Editorial Metadata Row with Rotating Seal -->
+    <div class="hero-header-top-row">
+      <div class="hero-edition-block">
+        <span class="edition-code">VOL. 2026 // EDITION 01</span>
+        <div class="status-live-chip">
+          <span class="live-pulse-dot"></span>
+          <span>AVAILABLE FOR FILM & SCRIPT COMMISSIONS</span>
+        </div>
+      </div>
+
+      <div class="hero-seal-badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="rotating-seal-svg">
+          <path id="seal-text-path" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+          <text font-size="8.8" font-family="var(--font-mono)" letter-spacing="2.2" fill="currentColor">
+            <textPath href="#seal-text-path" startOffset="0%">✦ CHAHAT SINGH ✦ BMM GRADUATE ✦ FILMMAKER ✦</textPath>
+          </text>
+        </svg>
+        <span class="seal-initials">CS</span>
+      </div>
+    </div>
+
+    <!-- Role Badges Strip -->
+    <div class="hero-role-badges">
+      <span class="role-pill">Filmmaker</span>
+      <span class="role-dot">✦</span>
+      <span class="role-pill">Screenwriter</span>
+      <span class="role-dot">✦</span>
+      <span class="role-pill">Content Writer</span>
+      <span class="role-dot">✦</span>
+      <span class="role-pill">Researcher</span>
+      <span class="role-dot">✦</span>
+      <span class="role-pill">Content Strategist</span>
+      <span class="role-dot">✦</span>
+      <span class="role-pill">Copywriter</span>
+    </div>
+
+    <!-- Sculptural Kinetic Giant Headline (Full Canvas Layout) -->
+    <div class="hero-headline-container">
+      <div class="headline-grid-layout">
+        <div class="headline-left-main">
+          <h1 class="hero-giant-title">
+            <span class="title-line line-1">
+              <span class="title-word">I Write</span>
+              <span class="title-accent-tag">[ 01 // ARCHIVAL & CINEMATIC ]</span>
+            </span>
+            <span class="title-line line-2">
+              <span class="hero-shimmer-text">Relentlessly</span>
+              <span class="title-badge-pill">BMM // MASS MEDIA</span>
+            </span>
+            <span class="title-line line-3">
+              <span class="title-word">Researched Stories.</span>
+            </span>
+          </h1>
+        </div>
+
+        <!-- Right Side Editorial Dossier Video Card (Playing User's Video) -->
+        <div class="headline-right-meta">
+          <div class="meta-dossier-card video-card-variant">
+            <div class="dossier-card-top">
+              <span class="dossier-code">DOSSIER // CS-01</span>
+              <div class="dossier-live-pill">
+                <span class="video-live-dot"></span>
+                <span>ATMOSPHERIC REEL</span>
+              </div>
+            </div>
+
+            <!-- Integrated High-Resolution Video Player Window in Card Shape -->
+            <div class="dossier-video-frame">
+              <video 
+                src={getAssetUrl('/assets/videos/hero_dossier_video.mp4')}
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                class="dossier-ambient-video"
+                id="hero-dossier-video-el"
+              ></video>
+              <div class="video-overlay-gradient"></div>
+              <div class="video-caption-bar">
+                <span class="caption-tag">MOOD // SALTWATER MAGIC</span>
+                <button class="video-sound-toggle" id="dossier-video-sound-btn" title="Toggle audio" aria-label="Toggle video sound">
+                  <span id="dossier-sound-icon">🔇</span>
+                </button>
+              </div>
+            </div>
+
+            <p class="dossier-card-text">
+              Transforming raw historical archives, 3D crime investigations, and sovereign finance into high-retention visual stories that are simple, engaging, and clear.
+            </p>
+
+            <div class="dossier-metrics-strip">
+              <div class="d-metric">
+                <span class="d-num">626K</span>
+                <span class="d-lbl">West Bengal</span>
+              </div>
+              <div class="d-metric">
+                <span class="d-num">599K</span>
+                <span class="d-lbl">Kolkata News</span>
+              </div>
+              <div class="d-metric">
+                <span class="d-num">533K</span>
+                <span class="d-lbl">Tamil Nadu</span>
+              </div>
+              <div class="d-metric">
+                <span class="d-num">150K</span>
+                <span class="d-lbl">Bombay News</span>
+              </div>
+            </div>
+
+            <div class="dossier-footer-links">
+              <a href="#properties" class="dossier-link"><span>Research Portfolios</span> <span>↓</span></a>
+              <a href="#philosophy" class="dossier-link"><span>Causal Continuity</span> <span>→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full-Bleed Kinetic Infinite Marquee Ticker -->
+    <div class="hero-marquee-ribbon" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>✦ 626K+ WEST BENGAL NEWS & DOCUMENTARIES</span>
+          <span>✦ 599K+ KOLKATA DAILY NEWS & BENGAL CULTURE</span>
+          <span>✦ 533K+ TAMIL NADU HERITAGE & POLITICS</span>
+          <span>✦ 150K+ BOMBAY NEWSROOM REACH</span>
+          <span>✦ 100K+ DAILY FINANCE RESEARCH</span>
+          <span>✦ 3D INCIDENT RECONSTRUCTION</span>
+          <span>✦ SCREENWRITING & CINEMATIC PACING</span>
+          <span>✦ BMM GRADUATE // MASS MEDIA</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>✦ 626K+ WEST BENGAL NEWS & DOCUMENTARIES</span>
+          <span>✦ 599K+ KOLKATA DAILY NEWS & BENGAL CULTURE</span>
+          <span>✦ 533K+ TAMIL NADU HERITAGE & POLITICS</span>
+          <span>✦ 150K+ BOMBAY NEWSROOM REACH</span>
+          <span>✦ 100K+ DAILY FINANCE RESEARCH</span>
+          <span>✦ 3D INCIDENT RECONSTRUCTION</span>
+          <span>✦ SCREENWRITING & CINEMATIC PACING</span>
+          <span>✦ BMM GRADUATE // MASS MEDIA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asymmetrical Gallery Exhibition Row -->
+  <div class="hero-asymmetric-grid">
+    <!-- Left Column: Poetic Editorial Stanza & Crisp Bio -->
+    <div class="stanza-col">
+      <div class="poetic-stanza">
+        <p class="stanza-line">“I write to understand deeply, question honestly,</p>
+        <p class="stanza-line">and turn complexity into something clear enough to be felt.”</p>
+        <span class="stanza-author">— Chahat</span>
+      </div>
+
+      <p class="bio-lead">
+        Filmmaker, screenwriter, and BMM graduate turning complex history, crime investigations, business strategy, and analytical philosophy into high-retention visual stories.
+      </p>
+
+      <div class="hero-tags-strip">
+        <span class="tag-pill gold">🎓 BMM Graduate</span>
+        <span class="tag-pill">⚡ 2M+ Combined Digital Reach</span>
+        <span class="tag-pill">🔍 3D Incident Research</span>
+        <span class="tag-pill">📜 Indian Philosophy & Logic</span>
+      </div>
+
+      <!-- Direct Contact Card (Email, Phone, Location) -->
+      <div class="hero-contact-card">
+        <div class="contact-meta-row">
+          <div class="meta-item">
+            <span class="meta-label">DIRECT EMAIL</span>
+            <a href={`mailto:${personal.email}`} class="meta-val-link">{personal.email}</a>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">PHONE / WHATSAPP</span>
+            <a href={personal.whatsapp} target="_blank" rel="noopener noreferrer" class="meta-val-link phone-link">
+              <span>{personal.phone}</span>
+              <span class="wa-badge">WhatsApp ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="meta-item location-item">
+          <span class="meta-label">LOCATION & BASE</span>
+          <span class="meta-val-text">📍 {personal.location}</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-action-links">
+        <a href="#films" class="btn-gallery btn-gallery-primary">
+          <span>🎬 Directed Short Films</span>
+          <span>↓</span>
+        </a>
+        <a href="#channels" class="btn-gallery">
+          <span>Publication Channels</span>
+        </a>
+        <a href="#samples" class="btn-gallery">
+          <span>Writing Samples</span>
+        </a>
+        <a href="#contact" class="btn-gallery">
+          <span>Commission / Contact</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Fine-Art Editorial Monograph Box with Background Art -->
+    <div class="monograph-col">
+      <div class="monograph-frame">
+        <div class="monograph-header">
+          <span class="frame-label">EXHIBITION MONOGRAPH // CS-01</span>
+          <span class="frame-date">EST. 2026</span>
+        </div>
+
+        <!-- Archival Monograph Artwork Container -->
+        <div class="monograph-art-box">
+          <img 
+            src={getAssetUrl('/assets/images/david_lynch_coffee.jpg')} 
+            alt="David Lynch — Visionary Filmmaker & Cinematic Inspiration" 
+            class="monograph-bg-image"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            width="800"
+            height="533"
+          />
+          <div class="art-overlay-content">
+            <span class="thesis-label">CINEMATIC & VISIONARY NARRATIVE</span>
+            <p class="thesis-quote">
+              “{personal.mantra}”
+            </p>
+            <span class="thesis-signature">— Chahat</span>
+          </div>
+        </div>
+
+        <div class="monograph-footer">
+          <div class="author-credits">
+            <span class="author-name">{personal.name}</span>
+            <span class="author-roles">Filmmaker • Screenwriter • Researcher</span>
+          </div>
+          <button id="hero-copy-email-btn" class="quick-copy-tag" data-email={personal.email} title="Click to copy email">
+            <span id="hero-copy-text">copy email</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Impact Metrics Ribbon (Growth Track Record) -->
+  <div class="gallery-metrics-ribbon">
+    {stats.map((stat, idx) => (
+      <div class="metric-ribbon-item">
+        <div class="m-val-row">
+          <span class="m-val">{stat.value}</span>
+          <span class="m-idx">0{idx + 1}</span>
+        </div>
+        <span class="m-title">{stat.label}</span>
+        <span class="m-sub">{stat.detail}</span>
+      </div>
+    ))}
+  </div>
+</header>
+
+<style>
+  .avant-masthead {
+    margin-bottom: 4.5rem;
+    padding-top: 0.25rem;
+    position: relative;
+  }
+
+  /* Top Editorial Metadata Row */
+  .hero-header-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-edition-block {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .edition-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .status-live-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+  }
+
+  .live-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: livePulseBeacon 2s infinite;
+  }
+
+  @keyframes livePulseBeacon {
+    0% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+  }
+
+  /* Rotating Seal Badge */
+  .hero-seal-badge {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-terracotta);
+    flex-shrink: 0;
+  }
+
+  .rotating-seal-svg {
+    width: 100%;
+    height: 100%;
+    animation: rotateSeal 20s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes rotateSeal {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .seal-initials {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--text-main);
+  }
+
+  /* Roles Header Pill Group */
+  .hero-role-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--accent-terracotta);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .role-dot {
+    color: var(--hairline);
+    font-size: 0.65rem;
+  }
+
+  /* Giant Statement Headline */
+  .hero-statement-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-headline-container {
+    margin-bottom: 3.5rem;
+  }
+
+  .headline-grid-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-giant-title {
+    font-size: clamp(2.85rem, 6.5vw, 5.8rem);
+    font-weight: 300;
+    line-height: 0.98;
+    color: var(--text-main);
+    letter-spacing: -0.045em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+
+  .title-line {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .title-accent-tag {
+    font-family: var(--font-mono);
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    vertical-align: middle;
+  }
+
+  .hero-shimmer-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    padding-left: 0.5vw;
+    background: linear-gradient(135deg, #c2410c 0%, #ea580c 25%, #f59e0b 50%, #ea580c 75%, #c2410c 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroGradientShimmer 6s linear infinite;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-shimmer-text:hover {
+    transform: skewX(-4deg) scale(1.02);
+  }
+
+  @keyframes heroGradientShimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  .title-badge-pill {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-gold);
+    background: rgba(201, 162, 77, 0.1);
+    border: 1px solid var(--accent-gold);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+  }
+
+  /* Right Side Editorial Dossier Card (Fills Vacant Space) */
+  .headline-right-meta {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .meta-dossier-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 1.85rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    border-top: 3px solid var(--accent-terracotta);
+  }
+
+  .dossier-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dossier-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .dossier-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--accent-terracotta);
+    background: rgba(194, 65, 12, 0.08);
+    border: 1px solid rgba(194, 65, 12, 0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .video-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-terracotta);
+    animation: videoLivePulse 1.8s infinite;
+  }
+
+  @keyframes videoLivePulse {
+    0% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0.4; transform: scale(0.9); }
+  }
+
+  /* Video Player Container in Card Shape */
+  .dossier-video-frame {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000000;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--hairline);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .dossier-ambient-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.05) saturate(1.05);
+  }
+
+  .video-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+
+  .video-caption-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .caption-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  .video-sound-toggle {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all var(--speed-fast) var(--ease);
+  }
+
+  .video-sound-toggle:hover {
+    background: var(--accent-terracotta);
+    border-color: var(--accent-terracotta);
+    transform: scale(1.1);
+  }
+
+  .dossier-card-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .dossier-metrics-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--hairline-subtle);
+    border-bottom: 1px solid var(--hairline-subtle);
+  }
+
+  .d-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .d-num {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .d-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.675rem;
+    color: var(--text-muted);
+  }
+
+  .dossier-footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .dossier-link {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--accent-terracotta);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: transform var(--speed-fast) var(--ease), color var(--speed-fast) var(--ease);
+  }
+
+  .dossier-link:hover {
+    color: var(--text-main);
+    transform: translateX(3px);
+  }
+
+  /* Full-Bleed Kinetic Infinite Marquee Ribbon */
+  .hero-marquee-ribbon {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--bg-surface-soft);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 0.75rem 0;
+    margin-bottom: 4rem;
+    user-select: none;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scrollMarquee 35s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes scrollMarquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Asymmetrical Exhibition Grid */
+  .hero-asymmetric-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3.5rem;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+  }
+
+  /* Left Column Stanza */
+  .stanza-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .poetic-stanza {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--accent-terracotta);
+    background: var(--bg-surface-soft);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .stanza-line {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  .stanza-author {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-style: normal;
+    color: var(--accent-terracotta);
+    font-weight: 600;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .author-bio-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bio-lead {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--text-main);
+  }
+
+  .hero-tags-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin: 0.25rem 0;
+  }
+
+  .tag-pill {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .tag-pill.gold {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    background: rgba(201, 162, 77, 0.08);
+    font-weight: 600;
+  }
+
+
+  /* Direct Contact & Coordinates Card */
+  .hero-contact-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--hairline-subtle);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .meta-val-link {
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--text-main);
+    word-break: break-all;
+    transition: color var(--speed-fast) var(--ease);
+  }
+
+  .meta-val-link:hover {
+    color: var(--accent-terracotta);
+  }
+
+  .phone-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .wa-badge {
+    font-size: 0.65rem;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+  }
+
+  .meta-val-text {
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+  }
+
+  .hero-action-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Right Column Monograph Frame */
+  .monograph-col {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .monograph-frame {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 1.75rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .monograph-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.08em;
+  }
+
+  .monograph-art-box {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+  }
+
+  .monograph-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: brightness(0.95) contrast(1.08);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .monograph-frame:hover .monograph-bg-image {
+    transform: scale(1.03);
+  }
+
+  .art-overlay-content {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 18, 16, 0.25) 0%, rgba(20, 18, 16, 0.9) 100%);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .thesis-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #f59e0b;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  .thesis-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .thesis-signature {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #f59e0b;
+    font-weight: 600;
+  }
+
+  .monograph-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--hairline-subtle);
+  }
+
+  .author-credits {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .author-roles {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .quick-copy-tag {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-main);
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--speed-fast) var(--ease);
+  }
+
+  .quick-copy-tag:hover {
+    background: var(--text-main);
+    color: var(--bg-page);
+  }
+
+  /* Metrics Ribbon */
+  .gallery-metrics-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .metric-ribbon-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .m-val-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .m-val {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text-main);
+    letter-spacing: -0.03em;
+  }
+
+  .m-idx {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+  }
+
+  .m-title {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .m-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* Responsive Mobile Breakpoints */
+  @media (max-width: 1100px) {
+    .headline-grid-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .headline-right-meta {
+      justify-content: flex-start;
+    }
+
+    .meta-dossier-card {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .hero-asymmetric-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .monograph-col {
+      justify-content: center;
+    }
+
+    .monograph-frame {
+      max-width: 100%;
+    }
+
+    .gallery-metrics-ribbon {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .avant-masthead {
+      margin-bottom: 3.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .hero-statement-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-meta-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .hero-action-links {
+      flex-direction: column;
+    }
+
+    .hero-action-links .btn-gallery {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .gallery-metrics-ribbon {
+      grid-template-columns: 1fr;
+      padding: 1.5rem 0;
+    }
+  }
+</style>
+
+<script>
+  const heroCopyBtn = document.getElementById('hero-copy-email-btn');
+  const heroCopyText = document.getElementById('hero-copy-text');
+
+  if (heroCopyBtn && heroCopyText) {
+    heroCopyBtn.addEventListener('click', async () => {
+      const email = heroCopyBtn.getAttribute('data-email') || '';
+      try {
+        await navigator.clipboard.writeText(email);
+        heroCopyText.textContent = '✓ copied';
+        setTimeout(() => {
+          heroCopyText.textContent = 'copy email';
+        }, 2000);
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  }
+
+  // Dossier Video Sound Toggle
+  const dossierVideo = document.getElementById('hero-dossier-video-el') as HTMLVideoElement | null;
+  const soundBtn = document.getElementById('dossier-video-sound-btn');
+  const soundIcon = document.getElementById('dossier-sound-icon');
+
+  if (dossierVideo && soundBtn && soundIcon) {
+    soundBtn.addEventListener('click', () => {
+      dossierVideo.muted = !dossierVideo.muted;
+      soundIcon.textContent = dossierVideo.muted ? '🔇' : '🔊';
+    });
+  }
+</script>
