@@ -585,19 +585,20 @@ const { personal, stats } = portfolioData;
   }
 
   .video-sound-toggle {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: #ffffff;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     transition: all var(--speed-fast) var(--ease);
+    touch-action: manipulation;
   }
 
   .video-sound-toggle:hover {
@@ -615,7 +616,7 @@ const { personal, stats } = portfolioData;
 
   .dossier-metrics-strip {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
     padding: 0.85rem 0;
     border-top: 1px solid var(--hairline-subtle);
@@ -1085,12 +1086,67 @@ const { personal, stats } = portfolioData;
 
   @media (max-width: 600px) {
     .avant-masthead {
-      margin-bottom: 3.5rem;
-      padding-top: 0.5rem;
+      margin-bottom: 2.75rem;
+      padding-top: 0.25rem;
+    }
+
+    .hero-header-top-row {
+      margin-bottom: 1.25rem;
+      gap: 0.75rem;
+    }
+
+    .hero-edition-block {
+      gap: 0.6rem;
+    }
+
+    .edition-code {
+      font-size: 0.7rem;
+    }
+
+    .status-live-chip {
+      font-size: 0.675rem;
+      padding: 0.25rem 0.55rem;
+    }
+
+    .hero-seal-badge {
+      width: 52px;
+      height: 52px;
+    }
+
+    .seal-initials {
+      font-size: 0.75rem;
+    }
+
+    .hero-giant-title {
+      font-size: clamp(2.3rem, 10vw, 3.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+
+    .title-line {
+      gap: 0.5rem;
+    }
+
+    .title-accent-tag {
+      font-size: 0.68rem;
+    }
+
+    .title-badge-pill {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
     }
 
     .hero-statement-section {
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-dossier-card {
+      padding: 1.25rem;
+    }
+
+    .dossier-metrics-strip {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
     }
 
     .contact-meta-row {
@@ -1098,19 +1154,41 @@ const { personal, stats } = portfolioData;
       gap: 0.75rem;
     }
 
+    .hero-contact-card {
+      padding: 1rem 1.15rem;
+    }
+
     .hero-action-links {
       flex-direction: column;
+      gap: 0.6rem;
     }
 
     .hero-action-links .btn-gallery {
       width: 100%;
       text-align: center;
       justify-content: center;
+      padding: 0.85rem 1.25rem;
     }
 
     .gallery-metrics-ribbon {
       grid-template-columns: 1fr;
-      padding: 1.5rem 0;
+      padding: 1.25rem 0;
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hero-giant-title {
+      font-size: 2.1rem;
+    }
+
+    .hero-role-badges {
+      font-size: 0.725rem;
+      gap: 0.35rem;
+    }
+
+    .meta-dossier-card {
+      padding: 1rem;
     }
   }
 </style>

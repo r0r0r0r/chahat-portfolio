@@ -486,17 +486,40 @@ const projectScopes = [
 
   @media (max-width: 600px) {
     .contact-card {
-      padding: 1.5rem 1rem;
+      padding: 1.25rem 1rem;
+      gap: 2rem;
+    }
+
+    .contact-card-title {
+      font-size: 1.45rem;
+    }
+
+    .scope-chips {
+      gap: 0.4rem;
+    }
+
+    .scope-chip {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.725rem;
     }
 
     .phone-action-row {
       grid-template-columns: 1fr;
     }
 
+    .phone-call-btn, .whatsapp-btn {
+      padding: 0.75rem 1rem;
+    }
+
     .copy-channel-btn {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .submit-btn {
+      padding: 0.95rem 1.25rem;
     }
   }
 </style>

@@ -391,6 +391,43 @@ const vimeo = socials.find(s => s.label === 'Vimeo');
   @media (max-width: 900px) {
     .films-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .films-header-row {
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cinema-platform-pills {
+      width: 100%;
+    }
+
+    .cinema-platform-btn {
+      flex: 1;
+      justify-content: center;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.75rem;
+    }
+
+    .film-card-content {
+      padding: 1.25rem;
+      gap: 1rem;
+    }
+
+    .film-title {
+      font-size: 1.4rem;
+    }
+
+    .film-action-bar {
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .film-action-btn {
+      width: 100%;
     }
   }
 </style>

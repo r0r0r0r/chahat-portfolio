@@ -398,10 +398,42 @@ const { pillars, academicPhilosophy, personal } = portfolioData;
   @media (max-width: 960px) {
     .pillars-grid, .academic-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
     .doctrine-monograph, .academic-monograph {
       padding: 1.75rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pillar-card {
+      padding: 1.25rem 1rem;
+    }
+
+    .pillar-title {
+      font-size: 1.4rem;
+    }
+
+    .doctrine-monograph, .academic-monograph {
+      padding: 1.35rem 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .doctrine-title, .academic-heading {
+      font-size: 1.45rem;
+    }
+
+    .doctrine-quote-box {
+      padding: 1rem 1.15rem;
+    }
+
+    .doctrine-quote-text {
+      font-size: 1.05rem;
+    }
+
+    .academic-card {
+      padding: 1.25rem 1rem;
     }
   }
 </style>

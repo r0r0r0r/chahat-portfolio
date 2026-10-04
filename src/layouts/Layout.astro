@@ -63,8 +63,8 @@ const {
           <span class="brand-tag">/ Editorial & Research Portfolio</span>
         </a>
 
-        <!-- Minimalist Icon Directory & Navigation Links -->
-        <nav class="gallery-icon-directory" aria-label="Quick Directory">
+        <!-- Desktop Icon Directory & Navigation Links -->
+        <nav class="gallery-icon-directory desktop-nav" aria-label="Quick Directory">
           <a href="#films" title="Directed Short Films" class="dir-icon-link">🎬</a>
           <a href="#channels" title="Publication Channels" class="dir-icon-link">📸</a>
           <a href="#properties" title="Editorial Portfolios" class="dir-icon-link">🏛️</a>
@@ -83,14 +83,103 @@ const {
             <span class="theme-icon" id="theme-icon">◐</span>
           </button>
         </nav>
+
+        <!-- Mobile Header Controls -->
+        <div class="mobile-nav-controls">
+          <button id="theme-toggle-btn-mobile" class="theme-switch-btn" aria-label="Toggle theme">
+            <span class="theme-icon-mobile">◐</span>
+          </button>
+          <button id="mobile-menu-btn" class="mobile-menu-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
       </div>
     </header>
+
+    <!-- Fullscreen Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer-overlay" aria-hidden="true">
+      <div class="mobile-drawer-content">
+        <div class="drawer-header">
+          <span class="drawer-title">EXHIBITS & DIRECTORY</span>
+          <button id="drawer-close-btn" class="drawer-close" aria-label="Close Navigation">✕</button>
+        </div>
+
+        <nav class="drawer-links" aria-label="Mobile Navigation">
+          <a href="#films" class="drawer-link-item">
+            <span class="drawer-icon">🎬</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Directed Short Films</span>
+              <span class="drawer-link-sub">Cinema & Screenwriting</span>
+            </div>
+          </a>
+          <a href="#channels" class="drawer-link-item">
+            <span class="drawer-icon">📸</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Publication Channels</span>
+              <span class="drawer-link-sub">10 Active Portfolios • 2M+ Reach</span>
+            </div>
+          </a>
+          <a href="#properties" class="drawer-link-item">
+            <span class="drawer-icon">🏛️</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Editorial Monograph</span>
+              <span class="drawer-link-sub">Ten Research Niches</span>
+            </div>
+          </a>
+          <a href="#samples" class="drawer-link-item">
+            <span class="drawer-icon">📖</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Writing Samples & Essays</span>
+              <span class="drawer-link-sub">Hook Architecture & Analysis</span>
+            </div>
+          </a>
+          <a href="#strategy" class="drawer-link-item">
+            <span class="drawer-icon">⚡</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Content Strategy</span>
+              <span class="drawer-link-sub">6-Step Viral Narrative Flow</span>
+            </div>
+          </a>
+          <a href="#philosophy" class="drawer-link-item">
+            <span class="drawer-icon">📜</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Editorial Philosophy</span>
+              <span class="drawer-link-sub">Causal Continuity & Rigor</span>
+            </div>
+          </a>
+          <a href="#experience" class="drawer-link-item">
+            <span class="drawer-icon">📰</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Newsroom Dossier</span>
+              <span class="drawer-link-sub">3D Incident & Research Background</span>
+            </div>
+          </a>
+          <a href="#contact" class="drawer-link-item drawer-contact-highlight">
+            <span class="drawer-icon">✉️</span>
+            <div class="drawer-text-group">
+              <span class="drawer-link-title">Inquiries & Commissions</span>
+              <span class="drawer-link-sub">{personal.email}</span>
+            </div>
+          </a>
+        </nav>
+
+        <div class="drawer-footer">
+          <div class="drawer-socials-row">
+            <a href="https://boxd.it/4hAfn" target="_blank" rel="noopener noreferrer" class="drawer-social-pill">Letterboxd ↗</a>
+            <a href="https://vimeo.com/user214567561?fl=pp&fe=sh" target="_blank" rel="noopener noreferrer" class="drawer-social-pill">Vimeo ↗</a>
+            <a href="https://www.instagram.com/chahatnotebook?stkn=aHl1bWRlNWw4aW1j" target="_blank" rel="noopener noreferrer" class="drawer-social-pill">Instagram ↗</a>
+            <a href={personal.whatsapp} target="_blank" rel="noopener noreferrer" class="drawer-social-pill wa-pill">WhatsApp ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="gallery-container">
       <slot />
     </div>
 
-    <!-- Theme Switch & Scroll Progress Scripts -->
+    <!-- Theme Switch & Mobile Drawer Scripts -->
     <script>
       function initGalleryCore() {
         // Scroll Progress
@@ -113,21 +202,66 @@ const {
 
         // Theme Toggle
         const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeBtnMobile = document.getElementById('theme-toggle-btn-mobile');
         const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.querySelector('.theme-icon-mobile');
         const html = document.documentElement;
 
-        // Check stored preference
-        const savedTheme = localStorage.getItem('gallery-theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '◐';
+        function applyTheme(theme: string) {
+          html.setAttribute('data-theme', theme);
+          localStorage.setItem('gallery-theme', theme);
+          const icon = theme === 'dark' ? '☀️' : '◐';
+          if (themeIcon) themeIcon.textContent = icon;
+          if (themeIconMobile) themeIconMobile.textContent = icon;
+        }
 
-        if (themeBtn) {
-          themeBtn.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme') || 'light';
-            const next = current === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('gallery-theme', next);
-            if (themeIcon) themeIcon.textContent = next === 'dark' ? '☀️' : '◐';
+        const savedTheme = localStorage.getItem('gallery-theme') || 'light';
+        applyTheme(savedTheme);
+
+        function toggleTheme() {
+          const current = html.getAttribute('data-theme') || 'light';
+          applyTheme(current === 'light' ? 'dark' : 'light');
+        }
+
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+
+        // Mobile Drawer Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const drawer = document.getElementById('mobile-drawer');
+        const closeBtn = document.getElementById('drawer-close-btn');
+        const drawerLinks = document.querySelectorAll<HTMLAnchorElement>('.drawer-link-item, .drawer-social-pill');
+
+        function openDrawer() {
+          if (drawer) {
+            drawer.classList.add('active');
+            drawer.setAttribute('aria-hidden', 'false');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        function closeDrawer() {
+          if (drawer) {
+            drawer.classList.remove('active');
+            drawer.setAttribute('aria-hidden', 'true');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          }
+        }
+
+        if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+
+        drawerLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            closeDrawer();
+          });
+        });
+
+        if (drawer) {
+          drawer.addEventListener('click', (e) => {
+            if (e.target === drawer) closeDrawer();
           });
         }
       }
@@ -152,11 +286,11 @@ const {
   .nav-content {
     max-width: var(--page-max-width);
     margin: 0 auto;
-    padding: 0.75rem clamp(1.5rem, 3.5vw, 4rem);
+    padding: 0.75rem clamp(1rem, 3.5vw, 4rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .brand-signature {
@@ -164,6 +298,7 @@ const {
     align-items: baseline;
     gap: 0.65rem;
     color: var(--text-main);
+    flex-shrink: 0;
   }
 
   .brand-monogram {
@@ -187,7 +322,7 @@ const {
     color: var(--text-muted);
   }
 
-  /* Minimalist Icon Directory (Reference Style) */
+  /* Desktop Icon Directory */
   .gallery-icon-directory {
     display: flex;
     align-items: center;
@@ -244,8 +379,8 @@ const {
   .theme-switch-btn {
     background: transparent;
     border: 1px solid var(--hairline);
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -254,7 +389,6 @@ const {
     color: var(--text-main);
     font-size: 0.85rem;
     transition: all var(--speed-fast) var(--ease);
-    margin-left: 0.35rem;
   }
 
   .theme-switch-btn:hover {
@@ -262,9 +396,192 @@ const {
     transform: rotate(45deg);
   }
 
-  @media (max-width: 860px) {
-    .dir-icon-link {
+  /* Mobile Controls */
+  .mobile-nav-controls {
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    color: var(--text-main);
+  }
+
+  .hamburger-bar {
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: all var(--speed-fast) var(--ease);
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 18, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--speed-normal) var(--ease);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobile-drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-drawer-content {
+    background: var(--bg-page);
+    width: 88%;
+    max-width: 380px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1.5rem 1.25rem 2rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform var(--speed-normal) var(--ease);
+  }
+
+  .mobile-drawer-overlay.active .mobile-drawer-content {
+    transform: translateX(0);
+  }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 1rem;
+  }
+
+  .drawer-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-terracotta);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .drawer-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .drawer-link-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all var(--speed-fast) var(--ease);
+  }
+
+  .drawer-link-item:hover, .drawer-link-item:active {
+    background: var(--bg-surface-soft);
+    border-color: var(--hairline);
+  }
+
+  .drawer-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .drawer-text-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .drawer-link-title {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .drawer-link-sub {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .drawer-contact-highlight {
+    background: var(--bg-surface);
+    border: 1px solid var(--hairline);
+    margin-top: 0.5rem;
+  }
+
+  .drawer-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    margin-top: 1.5rem;
+  }
+
+  .drawer-socials-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .drawer-social-pill {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 4px;
+    background: var(--bg-surface-soft);
+    border: 1px solid var(--hairline);
+    color: var(--text-secondary);
+  }
+
+  .wa-pill {
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  @media (max-width: 960px) {
+    .desktop-nav {
       display: none;
+    }
+
+    .mobile-nav-controls {
+      display: flex;
     }
 
     .brand-tag {
@@ -274,7 +591,11 @@ const {
 
   @media (max-width: 600px) {
     .nav-content {
-      padding: 0.85rem 1.25rem;
+      padding: 0.65rem 1rem;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
     }
   }
 </style>
